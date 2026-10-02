@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Постановление</title>
+<style>
+body{background:#e9e7e2;font-family:"Times New Roman",Times,serif;margin:0;padding:30px}
+.page{max-width:800px;margin:auto;background:#fff;padding:60px 85px;box-shadow:0 0 10px #aaa;min-height:1050px}
+.break{page-break-before:always}
+h1,h2{text-align:center;font-weight:bold;font-size:14pt}
+p{font-size:14pt;line-height:1.3;text-align:justify;text-indent:1.25cm;margin:0}
+.center{text-align:center;text-indent:0}
+.header{display:flex;justify-content:space-between;font-size:14pt;margin-bottom:45px}
+.signature{margin-top:70px;display:flex;justify-content:space-between;font-size:14pt}
+.option{border:1px solid #222;padding:12px;margin:15px 0;font-size:14pt;cursor:pointer}
+input{width:90%;padding:10px;font:14pt "Times New Roman";border:1px solid #333}
+#answer{text-align:center;font-weight:bold;margin-top:20px}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<h1>ПОСТАНОВЛЕНИЕ</h1>
+
+<div class="header">
+<span>г. Саратов</span>
+<span>04 октября 2026 года</span>
+</div>
+
+<p>
+Прокурор праздничного производства, рассмотрев материал проверки
+№ 04/10-2026, зарегистрированный по факту наступления дня рождения
+<b>Бралиева Исатая Исхаковича</b>,
+</p>
+
+<h2>УСТАНОВИЛ:</h2>
+
+<p>
+Проведённой проверкой установлено, что <b>04 октября 2026 года</b>
+Бралиев Исатай Исхакович при обстоятельствах, не зависящих от его воли,
+достиг очередного возраста.
+</p>
+
+<p>
+Указанный факт носит объективный, неизбежный и ежегодно повторяющийся
+характер. Законных оснований для переноса либо отмены указанной даты
+материалами проверки не установлено.
+</p>
+
+<p>
+В ходе проверочных мероприятий были опрошены родственники, друзья,
+знакомые и иные лица, располагающие сведениями, имеющими значение для
+правильного разрешения вопроса. Из полученных объяснений следует, что
+Бралиев Исатай Исхакович действительно является именинником и подлежит
+обязательному поздравлению.
+</p>
+
+<p>
+Кроме того, установлено, что Бралиев Исатай Исхакович за истекший период
+проявил себя с положительной стороны, имеет заслуженный авторитет среди
+близких и знакомых, в связи с чем имеются основания для проведения
+торжественного мероприятия.
+</p>
+
+<h2>ПОСТАНОВИЛ:</h2>
+
+<p>
+1. Назначить проведение праздничного мероприятия, посвящённого дню рождения
+<b>Бралиева Исатая Исхаковича</b>, на <b>04 октября 2026 года в 18 часов 00 минут.</b>
+</p>
+
+<p>
+2. Определить место проведения мероприятия:
+<b>Саратовская область, г. Саратов, ул. Белоглинская, д. 34/38, кв. 54.</b>
+</p>
+
+<p>
+3. Всем приглашённым лицам обеспечить личную явку к установленному времени.
+Неявка допускается исключительно при наличии уважительных причин.
+</p>
+
+<p>
+4. Приглашённым лицам при себе иметь хорошее настроение и готовность
+к непосредственному участию в праздничном мероприятии.
+</p>
+
+<div class="signature">
+<div>Прокурор<br><br>______________</div>
+<div>С постановлением ознакомлен<br><br>______________</div>
+</div>
+
+</div>
+
+<div class="page break">
+
+<p class="center">
+Приложение № 1<br>
+к постановлению № 04/10-2026
+</p>
+
+<h2 style="margin-bottom:35px;">ЛИСТ УВЕДОМЛЕНИЯ О ЯВКЕ</h2>
+
+<p>
+В соответствии с постановлением о проведении праздничного мероприятия
+лицо, получившее настоящее уведомление, сообщает принятое решение
+относительно явки.
+</p>
+
+<p class="center" style="font-size:14pt;margin-bottom:8px;"><b>Ф.И.О. приглашённого лица:</b></p>
+
+<p class="center">
+<input id="fio" placeholder="Фамилия Имя Отчество">
+</p>
+
+<p class="center" style="font-size:14pt;margin-top:35px;margin-bottom:15px;"><b>РЕШЕНИЕ ПРИГЛАШЁННОГО ЛИЦА:</b></p>
+
+<div class="option" onclick="send('ЯВЛЮСЬ')">☐ ЯВЛЮСЬ</div>
+<div class="option" onclick="send('НЕ ЯВЛЮСЬ')">☐ НЕ ЯВЛЮСЬ</div>
+<div class="option" onclick="send('БУДУ С ОПОЗДАНИЕМ')">☐ БУДУ С ОПОЗДАНИЕМ</div>
+
+<div id="answer"></div>
+
+<p>
+Отметка о принятом решении подлежит внесению в журнал регистрации
+праздничного производства № 04/10-2026.
+</p>
+
+</div>
+
+<script>
+const scriptURL="https://script.google.com/macros/s/AKfycbxrEf3eI3QEUCq3uaPh8rP-U3HzgjgRUNvkIiltxBOjEF4JSRr6AVazqM6DbuZMWPdv-w/exec";
+function send(status){
+let fio=document.getElementById("fio").value;
+if(!fio){alert("Введите ФИО");return;}
+fetch(scriptURL,{method:"POST",body:JSON.stringify({fio:fio,status:status})});
+document.getElementById("answer").innerHTML="Отметка внесена: "+status;
+}
+</script>
+
+</body>
+</html>
